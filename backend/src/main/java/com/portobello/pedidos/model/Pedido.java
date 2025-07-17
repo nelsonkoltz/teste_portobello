@@ -15,11 +15,19 @@ public class Pedido {
     private String descricaoItem;
     private LocalDateTime dataCriacao;
 
+    // Construtor padrão
     public Pedido() {
         this.dataCriacao = LocalDateTime.now();
     }
 
-    // Getters e Setters
+    // Construtor Teste
+    public Pedido(String id, String nomeCliente, String item, String descricaoItem, LocalDateTime dataCriacao) {
+        this.id = id;
+        this.nomeCliente = nomeCliente;
+        this.item = item;
+        this.descricaoItem = descricaoItem;
+        this.dataCriacao = dataCriacao;
+    }
 
     public String getId() {
         return id;
@@ -49,8 +57,8 @@ public class Pedido {
         return descricaoItem;
     }
 
-    public void setDescricaoItem(String descricaoIten) {
-        this.descricaoItem = descricaoIten;
+    public void setDescricaoItem(String descricaoItem) {
+        this.descricaoItem = descricaoItem;
     }
 
     public LocalDateTime getDataCriacao() {
