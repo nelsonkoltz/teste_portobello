@@ -31,10 +31,9 @@ public class PedidoControllerTest {
     private MockMvc mockMvc;
 
     @SpyBean
-    private PedidoService pedidoService; // permite usar a lógica real
-
+    private PedidoService pedidoService;
     @MockBean
-    private PedidoRepository pedidoRepository; // necessário pois o service usa
+    private PedidoRepository pedidoRepository;
 
     @MockBean
     private MensageriaSimuladaService mensageriaSimuladaService;
