@@ -1,5 +1,6 @@
+com\portobello\pedidos\mensageria\MensageriaSimuladaService.class
+com\portobello\pedidos\controller\PedidoController.class
+com\portobello\pedidos\repository\PedidoRepository.class
 com\portobello\pedidos\model\Pedido.class
 com\portobello\pedidos\service\PedidoService.class
-com\portobello\pedidos\controller\PedidoController.class
 com\portobello\pedidos\PedidoApp.class
-com\portobello\pedidos\repository\PedidoRepository.class

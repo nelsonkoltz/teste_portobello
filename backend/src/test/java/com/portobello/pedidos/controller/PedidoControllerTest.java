@@ -1,12 +1,16 @@
 package com.portobello.pedidos.controller;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portobello.pedidos.model.Pedido;
+import com.portobello.pedidos.repository.PedidoRepository;
+import com.portobello.pedidos.mensageria.MensageriaSimuladaService;
 import com.portobello.pedidos.service.PedidoService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,6 +18,9 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -23,17 +30,28 @@ public class PedidoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @SpyBean
+    private PedidoService pedidoService; // permite usar a lógica real
+
     @MockBean
-    private PedidoService pedidoService;
+    private PedidoRepository pedidoRepository; // necessário pois o service usa
+
+    @MockBean
+    private MensageriaSimuladaService mensageriaSimuladaService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
     void deveListarTodosPedidos() throws Exception {
-        Pedido pedido = new Pedido("1", "João", "Produto A", "Descrição", LocalDateTime.now());
+        Pedido pedido = new Pedido();
+        pedido.setId("1");
+        pedido.setNomeCliente("João");
+        pedido.setItem("Produto A");
+        pedido.setDescricaoItem("Descrição");
+        pedido.setDataCriacao(LocalDateTime.now());
 
-        Mockito.when(pedidoService.listar()).thenReturn(Arrays.asList(pedido));
+        when(pedidoRepository.findAll()).thenReturn(Arrays.asList(pedido));
 
         mockMvc.perform(get("/pedidos"))
                 .andExpect(status().isOk())
@@ -43,9 +61,14 @@ public class PedidoControllerTest {
 
     @Test
     void deveBuscarPedidoPorId() throws Exception {
-        Pedido pedido = new Pedido("1", "Maria", "Produto B", "Desc", LocalDateTime.now());
+        Pedido pedido = new Pedido();
+        pedido.setId("1");
+        pedido.setNomeCliente("Maria");
+        pedido.setItem("Produto B");
+        pedido.setDescricaoItem("Desc");
+        pedido.setDataCriacao(LocalDateTime.now());
 
-        Mockito.when(pedidoService.buscarPorId("1")).thenReturn(Optional.of(pedido));
+        when(pedidoRepository.findById("1")).thenReturn(Optional.of(pedido));
 
         mockMvc.perform(get("/pedidos/1"))
                 .andExpect(status().isOk())
@@ -55,22 +78,34 @@ public class PedidoControllerTest {
 
     @Test
     void deveCriarPedido() throws Exception {
-        Pedido pedido = new Pedido(null, "Lucas", "Produto X", "Texto", LocalDateTime.now());
-        Pedido salvo = new Pedido("123", "Lucas", "Produto X", "Texto", LocalDateTime.now());
+        Pedido pedido = new Pedido();
+        pedido.setNomeCliente("Lucas");
+        pedido.setItem("Produto X");
+        pedido.setDescricaoItem("Texto");
+        pedido.setDataCriacao(LocalDateTime.now());
 
-        Mockito.when(pedidoService.criar(Mockito.any(Pedido.class))).thenReturn(salvo);
+        Pedido salvo = new Pedido();
+        salvo.setId("123");
+        salvo.setNomeCliente("Lucas");
+        salvo.setItem("Produto X");
+        salvo.setDescricaoItem("Texto");
+        salvo.setDataCriacao(LocalDateTime.now());
+
+        when(pedidoRepository.save(any(Pedido.class))).thenReturn(salvo);
 
         mockMvc.perform(post("/pedidos")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pedido)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(pedido)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value("123"))
                 .andExpect(jsonPath("$.nomeCliente").value("Lucas"));
+
+        verify(mensageriaSimuladaService).enviarNotificacaoNovoPedido(Mockito.anyString());
     }
 
     @Test
     void deveDeletarPedido() throws Exception {
-        Mockito.doNothing().when(pedidoService).deletar("1");
+        Mockito.doNothing().when(pedidoRepository).deleteById("1");
 
         mockMvc.perform(delete("/pedidos/1"))
                 .andExpect(status().isNoContent());

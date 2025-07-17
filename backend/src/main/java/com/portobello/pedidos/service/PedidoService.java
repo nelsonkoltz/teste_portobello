@@ -2,9 +2,9 @@ package com.portobello.pedidos.service;
 
 import com.portobello.pedidos.model.Pedido;
 import com.portobello.pedidos.repository.PedidoRepository;
+import com.portobello.pedidos.mensageria.MensageriaSimuladaService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,16 +12,17 @@ import java.util.Optional;
 public class PedidoService {
 
     private final PedidoRepository repository;
+    private final MensageriaSimuladaService mensageria;
 
-    public PedidoService(PedidoRepository repository) {
+    public PedidoService(PedidoRepository repository, MensageriaSimuladaService mensageria) {
         this.repository = repository;
+        this.mensageria = mensageria;
     }
 
     public Pedido criar(Pedido pedido) {
-        if (pedido.getDataCriacao() == null) {
-            pedido.setDataCriacao(LocalDateTime.now());
-        }
-        return repository.save(pedido);
+        Pedido salvo = repository.save(pedido);
+        mensageria.enviarNotificacaoNovoPedido("Novo pedido criado: " + salvo.getId() + " - Cliente: " + salvo.getNomeCliente());
+        return salvo;
     }
 
     public List<Pedido> listar() {
