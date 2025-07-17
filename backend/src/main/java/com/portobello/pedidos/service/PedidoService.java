@@ -4,12 +4,13 @@ import com.portobello.pedidos.model.Pedido;
 import com.portobello.pedidos.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PedidoService {
+
     private final PedidoRepository repository;
 
     public PedidoService(PedidoRepository repository) {
@@ -17,7 +18,9 @@ public class PedidoService {
     }
 
     public Pedido criar(Pedido pedido) {
-        pedido.setDataCriacao(LocalDate.now());
+        if (pedido.getDataCriacao() == null) {
+            pedido.setDataCriacao(LocalDateTime.now());
+        }
         return repository.save(pedido);
     }
 
@@ -32,5 +35,4 @@ public class PedidoService {
     public void deletar(String id) {
         repository.deleteById(id);
     }
-
 }

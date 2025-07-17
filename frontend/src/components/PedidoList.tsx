@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import { getPedidos, deletePedido } from '../services/pedidoService';
 
+interface Pedido {
+  id: string; 
+  nome: string;
+  descricao: string;
+}
+
 export function PedidoList() {
-  const [pedidos, setPedidos] = useState<any[]>([]);
+  const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
   const carregarPedidos = async () => {
     const dados = await getPedidos();
@@ -24,7 +30,7 @@ export function PedidoList() {
       <ul>
         {pedidos.map((pedido) => (
           <li key={pedido.id}>
-            {pedido.nome} : {pedido.descricao}
+            <strong>{pedido.nome}</strong>: {pedido.descricao}
             <button onClick={() => handleDelete(pedido.id)}>Excluir</button>
           </li>
         ))}

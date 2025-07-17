@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*") // Libera o acesso de qualquer origem (ideal para dev)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
@@ -38,6 +38,6 @@ public class PedidoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable String id) {
         service.deletar(id);
-        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+        return ResponseEntity.noContent().build();
     }
 }

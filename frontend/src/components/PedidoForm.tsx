@@ -9,7 +9,10 @@ export function PedidoForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.post('/pedidos', { nomeCliente, descricao });
+    await api.post('/pedidos', {
+      nome: nomeCliente,
+      descricao
+    });
     navigate('/');
   };
 

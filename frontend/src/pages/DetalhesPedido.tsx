@@ -8,7 +8,7 @@ export function DetalhesPedido() {
       <h2>📄 Detalhes do Pedido</h2>
       <p>ID do pedido: {id}</p>
 
-      {/* Aqui futuramente você pode carregar os dados do pedido do backend com o id */}
+      {}
     </div>
   );
 }

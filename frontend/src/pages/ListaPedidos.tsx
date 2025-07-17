@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { getPedidos, deletePedido } from '../services/pedidoService.ts';
 import { Link, useNavigate } from 'react-router-dom';
 import './css/ListaPedidos.css';
+
 interface Pedido {
   id: string;
-  cliente: string | null;
+  nome: string;
+  descricao: string;
   dataCriacao: string;
 }
 
@@ -43,9 +45,10 @@ export function ListaPedidos() {
         <ul className="pedido-list">
           {pedidos.map(pedido => (
             <li key={pedido.id} className="pedido-item">
-              <span className="pedido-nome">
-                {pedido.cliente ?? `Pedido de ${pedido.dataCriacao}`}
-              </span>
+              <div className="pedido-nome">
+                <strong>{pedido.nome}</strong>
+                <p>{pedido.descricao}</p>
+              </div>
               <div className="acoes">
                 <button
                   className="detalhes-btn"
