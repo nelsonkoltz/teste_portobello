@@ -12,7 +12,7 @@ public class Pedido {
     private String id;
     private String nomeCliente;
     private String item;
-    private String descricaoIten;
+    private String descricaoItem;
     private LocalDateTime dataCriacao;
 
     public Pedido() {
@@ -45,12 +45,12 @@ public class Pedido {
         this.item = item;
     }
 
-    public String getDescricaoIten() {
-        return descricaoIten;
+    public String getDescricaoItem() {
+        return descricaoItem;
     }
 
-    public void setDescricaoIten(String descricaoIten) {
-        this.descricaoIten = descricaoIten;
+    public void setDescricaoItem(String descricaoIten) {
+        this.descricaoItem = descricaoIten;
     }
 
     public LocalDateTime getDataCriacao() {

@@ -1,61 +1,123 @@
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #002A51;
+  margin-bottom: 1rem;
 }
 
-.top-actions {
-  text-align: right;
-  margin-bottom: 20px;
+.tabela-header {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
 }
 
 .novo-link {
-  background-color: #007bff;
+  background-color: #002A51;
   color: white;
-  padding: 8px 12px;
+  padding: 0.5rem 1rem;
   text-decoration: none;
   border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.pedido-list {
-  list-style: none;
-  padding: 0;
+.novo-link:hover {
+  background-color: #FFB902;
+  color: #002A51;
 }
 
-.pedido-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f8f8f8;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+.tabela-pedidos {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
-.acoes button {
-  margin-left: 10px;
-  padding: 6px 10px;
+.tabela-pedidos th,
+.tabela-pedidos td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabela-pedidos th {
+  background-color: #002A51;
+  color: #fff;
+}
+
+.tabela-pedidos tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.detalhes-btn,
+.excluir-btn {
+  padding: 4px 8px;
+  margin-right: 4px;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
 .detalhes-btn {
-  background-color: #28a745;
-  color: white;
+  background-color: #007bff;
+  color: #fff;
 }
 
 .excluir-btn {
   background-color: #dc3545;
-  color: white;
+  color: #fff;
 }
 
 .nenhum {
-  text-align: center;
-  color: #777;
+  color: #555;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .tabela-pedidos,
+  .tabela-pedidos thead,
+  .tabela-pedidos tbody,
+  .tabela-pedidos th,
+  .tabela-pedidos td,
+  .tabela-pedidos tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tabela-pedidos thead {
+    display: none;
+  }
+
+  .tabela-pedidos tr {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .tabela-pedidos td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .tabela-pedidos td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 8px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+  }
 }
