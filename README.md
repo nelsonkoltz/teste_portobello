@@ -25,7 +25,7 @@ Este projeto é um MVP de um sistema interno de pedidos B2B, desenvolvido como p
 
 Você pode rodar o projeto **com Docker** (recomendado) ou **localmente sem Docker**.
 
-## ✅ Com Docker (recomendado)
+### ✅ Com Docker (recomendado)
 
 > Requisitos:
 > - Docker e Docker Compose instalados
@@ -90,11 +90,11 @@ npm run dev
 
 Quando um novo pedido é criado, uma mensagem aparece no terminal simulando uma fila de mensageria. Exemplo:
 
-# 📩 [MENSAGERIA FAKE] Novo pedido criado: 123 - Cliente: Arinelson
+📩 [MENSAGERIA FAKE] Novo pedido criado: 123 - Cliente: Arinelson
 
 ---
 
-📘 Decisões Técnicas e Melhorias Futuras
+## 📘 Decisões Técnicas e Melhorias Futuras
 
 **Por que escolhi essas tecnologias?**
 
