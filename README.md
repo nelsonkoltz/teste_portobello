@@ -120,4 +120,4 @@ Quando um novo pedido é criado, uma mensagem aparece no terminal simulando uma 
 ## 📌 Autor
 
 Desenvolvido por **Arinelson Koltz**  
-🔗 Linkedin: [Linkedin/ArinelsonKoltz](www.linkedin.com/in/arinelson-koltz-24bb50113)
+🔗 LinkedIn: [linkedin.com/in/arinelson-koltz-24bb50113](https://www.linkedin.com/in/arinelson-koltz-24bb50113)
