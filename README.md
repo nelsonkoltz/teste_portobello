@@ -110,7 +110,6 @@ Quando um novo pedido é criado, uma mensagem aparece no terminal simulando uma 
 ## 🚀 Melhorias Futuras
 
 - Integrar uma mensageria real, como RabbitMQ ou AWS SQS, para comunicação assíncrona entre microsserviços.
-- Paginar os pedidos, para melhorar performance quando houver muitos registros.
 - Adicionar filtros e paginação nos endpoints de listagem.
 - Criar uma interface de administração, com filtros, ordenações e estatísticas dos pedidos.
 - Criação de telas de cadastro de itens e clientes – voltadas para o perfil de administrador, permitindo a gestão mais completa do processo de pedidos
@@ -121,4 +120,4 @@ Quando um novo pedido é criado, uma mensagem aparece no terminal simulando uma 
 ## 📌 Autor
 
 Desenvolvido por **Arinelson Koltz**  
-🔗 GitHub: [github.com/nelsonkoltz](https://github.com/nelsonkoltz/teste_portobello)
+🔗 Linkedin: [Linkedin/ArinelsonKoltz](www.linkedin.com/in/arinelson-koltz-24bb50113)
