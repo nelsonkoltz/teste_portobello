@@ -16,7 +16,6 @@ Este projeto é um MVP de um sistema interno de pedidos B2B, desenvolvido como p
 ### Frontend
 - React + TypeScript
 - Axios
-- React Router DOM
 - CSS customizado
 
 ---
@@ -31,7 +30,7 @@ Você pode rodar o projeto **com Docker** (recomendado) ou **localmente sem Dock
 > - Docker e Docker Compose instalados
 
 ```bash
-git clone https://github.com/seu-usuario/sistema-pedidos-b2b.git
+git clone https://github.com/nelsonkoltz/teste_portobello.git
 cd sistema-pedidos-b2b
 docker-compose up --build
 ```

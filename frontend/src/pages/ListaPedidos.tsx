@@ -41,7 +41,6 @@ export function ListaPedidos() {
     <div className="container">
       <h1 className="title">📋 Lista de Pedidos</h1>
 
-      {/* Campo de pesquisa + botão */}
       <div className="top-bar">
         <input
           type="text"

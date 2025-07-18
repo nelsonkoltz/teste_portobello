@@ -10,7 +10,6 @@
   margin-bottom: 1rem;
 }
 
-/* Campo de pesquisa e botão lado a lado */
 .top-bar {
   width: 80%;
   margin: 0 auto 1rem;
@@ -96,7 +95,6 @@
   margin-top: 1rem;
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
   .top-bar {
     flex-direction: column;

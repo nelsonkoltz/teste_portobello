@@ -65,7 +65,7 @@ export function DetalhesPedido() {
 
       <div className="detalhe">
         <strong>Data de Criação:</strong>{' '}
-        <span>{new Date(pedido.dataCriacao).toLocaleString('pt-BR')}</span>
+        <span>{new Date(pedido.dataCriacao).toLocaleDateString('pt-BR')}</span>
       </div>
 
       <button className="voltar-btn" onClick={() => navigate(-1)}>
